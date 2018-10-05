@@ -107,7 +107,19 @@ public class ARCoreController : MonoBehaviour
 	public void PlayPause()
 	{
 		Debug.Log("PlayPause in Controller");
-		VisualizerPrefabs[0].PlayPause();
+
+        List<Visualizer> activeVisualizers = null;
+        activeVisualizers = GetActiveVisualizers(m_Visualizers);
+
+        foreach (Visualizer v in activeVisualizers)
+        {
+            v.PlayPause();
+        }
+
+        //m_Visualizers.TryGetValue(0, out visualizer);
+        //visualizer.PlayPause();
+
+        //VisualizerPrefabs[0].PlayPause();
 
 		// if (VisualizerPrefabs[0].isActiveAndEnabled)
 		// {
@@ -120,14 +132,15 @@ public class ARCoreController : MonoBehaviour
 		// }
 	}
 
-	Visualizer GetActiveVisualizer(Dictionary<int, Visualizer> visualizers)
+	List<Visualizer> GetActiveVisualizers(Dictionary<int, Visualizer> visualizers)
 	{
+        List<Visualizer> activeVisualizers = new List<Visualizer>();
 		foreach (var visualizer in visualizers.Values)
 		{
-			if (visualizer.isActiveAndEnabled)
-				return visualizer;
+            if (visualizer.isActiveAndEnabled)
+                activeVisualizers.Add(visualizer);
 		}
-		return null;
+		return activeVisualizers;
 	}
 	void PinchtoZoom(Visualizer visualizer)
 	{
