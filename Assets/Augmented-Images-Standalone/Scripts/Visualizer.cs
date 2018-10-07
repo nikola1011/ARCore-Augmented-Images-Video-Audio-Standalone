@@ -15,6 +15,26 @@ public  class Visualizer : MonoBehaviour {
 	private AudioSource Audio;
     private VideoPlayer Video;
 
+    void Start()
+	{
+		this.Audio = this.GetComponent<AudioSource>();
+        this.Video = this.GetComponent<VideoPlayer>();
+        //TODO:annotations
+        //Debug.Log("Audio is set! " + this.Audio.name);
+
+        Video.loopPointReached += VideoContentEnded;
+    }
+
+    void VideoContentEnded(VideoPlayer videoPlayer)
+    {
+        if (!videoPlayer.isLooping)
+        {
+            //videoPlayer.Stop();
+            MeshRenderer meshRenderer = GetComponent<MeshRenderer>();
+            meshRenderer.enabled = false; // hides the video
+        }
+    }
+
 	public void PlayPause() 
 	{
 		Debug.Log("PlayPause in Visualizer");
@@ -41,41 +61,75 @@ public  class Visualizer : MonoBehaviour {
         {
             Debug.Log("Video component is not set or doesn't exist");
         }
-
-        //GetComponent<AudioSource>().Pause();
 	}
 
-	void Start()
-	{
-		this.Audio = this.GetComponent<AudioSource>();
-        this.Video = this.GetComponent<VideoPlayer>();
-        //TODO:annotations
-        Debug.Log("Audio is set! " + this.Audio.name);
+    public void Loop() 
+    {
+        Debug.Log("Loop in Visualizer");
+        if (Audio != null)
+        {
+            Audio.loop = true;
+        }
+        else
+        {
+            Debug.Log("Audio is not set!");
+        }
+
+        if (Video != null)
+        {
+            Video.isLooping = true;
+        }
+        else
+        {
+            Debug.Log("Video component is not set or doesn't exist");
+        }
     }
 
-	void Update()
-	{
-   //         if (Image == null || Image.TrackingState != TrackingState.Tracking)
-   //         {
-			//	VisualizedContent.SetActive(false);
-   //             return;
-   //         }
+    public void Stop() 
+    {
+        Debug.Log("Stop in Visualizer");
+        if (Audio != null)
+        {
+            Audio.Stop();
+        }
+        else
+        {
+            Debug.Log("Audio is not set!");
+        }
 
-   //         float halfWidth = Image.ExtentX / 2;
-   //         float halfHeight = Image.ExtentZ / 2;
-   //         // FrameUpperRight.transform.localPosition = (halfWidth * Vector3.right) + (halfHeight * Vector3.forward);
-			
-			
-			//// Try this 
-			////VisualizedContent.transform.position = Image.CenterPose.position;
-			////VisualizedContent.transform.rotation = Image.CenterPose.rotation;
+        if (Video != null)
+        {
+            Video.Stop();
+        }
+        else
+        {
+            Debug.Log("Video component is not set or doesn't exist");
+        }
+    }
 
-			//// localPosition is relative to the parent's transform.position // changing scale will scale units of measurement
-			//VisualizedContent.transform.localPosition = (halfWidth * Vector3.right) + (halfHeight * Vector3.forward); 
+    public void ShowHide() 
+    {
+        Debug.Log("ShowHide in Visualizer");
 
-			//VisualizedContent.SetActive(true);
-	}
-
-	//public abstract void Activate();
-	//public abstract void Deactivate();
+        if (Video != null)
+        {
+            MeshRenderer meshRenderer = GetComponent<MeshRenderer>();
+            if (Video.isPlaying) 
+            {
+                // Disable mesh rendered (make video invisible) and pause video  
+                meshRenderer.enabled = false;
+                Video.Pause();
+            }
+            else
+            {
+                // Enable mesh rendered (make video visible) and play video
+                meshRenderer.enabled = true;
+                Video.Play();
+            }
+        }
+        else
+        {
+            Debug.Log("Video component is not set or doesn't exist");
+        }
+    }
 }
