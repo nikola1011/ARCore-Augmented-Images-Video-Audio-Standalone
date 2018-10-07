@@ -85,11 +85,15 @@ public class ARCoreController : MonoBehaviour
 			}
 		}
 
-		//Visualizer activeVisualizer = GetActiveVisualizer(m_Visualizers);
-		
-		// Handle touch input  // MOVE THIS CODE TO Visualizer.cs (and try it there)
-		//PinchtoZoom(activeVisualizer);
-		//Rotate(activeVisualizer); 
+		// Handle touch input  // MOVE THIS CODE TO Visualizer.cs (and try it there), but this will affect every visualizer (ask if Visualizer is active, which is the same logic here)
+		List<Visualizer> activeVisualizers = null;
+        activeVisualizers = GetActiveVisualizers(m_Visualizers);
+
+        foreach (Visualizer visualizer in activeVisualizers)
+        {
+			PinchtoZoom(visualizer);
+			Rotate(visualizer); 
+        }
 
 		// Show the fit-to-scan overlay if there are no images that are Tracking.
 		foreach (var visualizer in m_Visualizers.Values)
@@ -107,27 +111,61 @@ public class ARCoreController : MonoBehaviour
 	public void PlayPause()
 	{
 		Debug.Log("PlayPause in Controller");
-		VisualizerPrefabs[0].PlayPause();
 
-		// if (VisualizerPrefabs[0].isActiveAndEnabled)
-		// {
-			// AudioSource audioSource = VisualizerPrefabs[0].gameObject.GetComponent<AudioSource>();
-			// Debug.Log("Audio source in PlayPause is " + audioSource);
-			// if (audioSource.isPlaying)
-				// audioSource.Pause();
-			// else
-				// audioSource.Play();
-		// }
+        List<Visualizer> activeVisualizers = null;
+        activeVisualizers = GetActiveVisualizers(m_Visualizers);
+
+        foreach (Visualizer v in activeVisualizers)
+        {
+            v.PlayPause();
+        }
 	}
 
-	Visualizer GetActiveVisualizer(Dictionary<int, Visualizer> visualizers)
+	public void Stop()
 	{
+		Debug.Log("Stop in Controller");
+		List<Visualizer> activeVisualizers = null;
+        activeVisualizers = GetActiveVisualizers(m_Visualizers);
+
+        foreach (Visualizer v in activeVisualizers)
+        {
+            v.Stop();
+        }
+	}
+
+	public void Loop()
+	{
+		Debug.Log("Loop in Controller");
+		  List<Visualizer> activeVisualizers = null;
+        activeVisualizers = GetActiveVisualizers(m_Visualizers);
+
+        foreach (Visualizer v in activeVisualizers)
+        {
+            v.Loop();
+        }
+	}
+
+	public void ShowHide()
+	{
+		Debug.Log("ShowHide in Controller");
+		List<Visualizer> activeVisualizers = null;
+        activeVisualizers = GetActiveVisualizers(m_Visualizers);
+
+        foreach (Visualizer v in activeVisualizers)
+        {
+            v.ShowHide();
+        }
+	}
+
+	List<Visualizer> GetActiveVisualizers(Dictionary<int, Visualizer> visualizers)
+	{
+        List<Visualizer> activeVisualizers = new List<Visualizer>();
 		foreach (var visualizer in visualizers.Values)
 		{
-			if (visualizer.isActiveAndEnabled)
-				return visualizer;
+            if (visualizer.isActiveAndEnabled)
+                activeVisualizers.Add(visualizer);
 		}
-		return null;
+		return activeVisualizers;
 	}
 	void PinchtoZoom(Visualizer visualizer)
 	{
