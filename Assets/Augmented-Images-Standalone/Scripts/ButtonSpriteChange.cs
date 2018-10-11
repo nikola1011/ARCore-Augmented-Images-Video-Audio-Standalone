@@ -7,6 +7,22 @@ public class ButtonSpriteChange : MonoBehaviour {
 
     public Sprite OffSprite;
     public Sprite OnSprite;
+
+    private Color onColor = new Color(22, 77, 137);
+    private Color offColor = Color.gray;
+
+    public void ChangeSpriteColor ()
+    {
+        Image image = GetComponent<Image>();
+        if (image != null)
+        {
+            if (image.color == onColor)
+                image.color = offColor;
+            else
+                image.color = onColor;
+        }
+    }
+
     public void ChageSprite()
     {
         Image image = GetComponent<Image>();

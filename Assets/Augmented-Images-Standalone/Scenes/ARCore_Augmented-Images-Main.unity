@@ -237,7 +237,7 @@ GameObject:
   - component: {fileID: 293316351}
   - component: {fileID: 293316354}
   m_Layer: 5
-  m_Name: PauseButton
+  m_Name: PlayPauseButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -256,10 +256,10 @@ RectTransform:
   m_Father: {fileID: 1939971157}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.3633909, y: 0.024630543}
-  m_AnchorMax: {x: 0.63500005, y: 0.1881746}
-  m_AnchoredPosition: {x: 0.70000005, y: -4.600006}
-  m_SizeDelta: {x: 0.37499428, y: 8.200001}
+  m_AnchorMin: {x: 0.3992041, y: 0.008825397}
+  m_AnchorMax: {x: 0.58900005, y: 0.128}
+  m_AnchoredPosition: {x: 1.15769, y: 0.5999756}
+  m_SizeDelta: {x: -0.1800003, y: 0.6999998}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &293316351
 MonoBehaviour:
@@ -336,7 +336,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.9191176, g: 0.8035288, b: 0.5001081, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -568,20 +568,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4482a8ab6e357144aea82438ca5458d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  VisualizerPrefab: {fileID: 114609594702340938, guid: 06f37cd5cdc64c543bb93408fb0bb97e,
-    type: 2}
   VisualizerPrefabs:
   - {fileID: 114505769949722224, guid: c34a2d49934bfb1459aac1a6c47e7e66, type: 2}
   - {fileID: 114440680293054996, guid: 7817a9d01a2a11149a6fddd2e9f6ddbe, type: 2}
-  - {fileID: 114301367058281476, guid: 5933988632ee55040aecdef7665de0a9, type: 2}
-  - {fileID: 114301367058281476, guid: 5933988632ee55040aecdef7665de0a9, type: 2}
-  video: {fileID: 0}
-  videoSource: 0
-  videoClip: {fileID: 32900000, guid: 62701156400b6e64fa78e41e8ce3bdc0, type: 3}
-  audio: {fileID: 0}
-  audioClip: {fileID: 8300000, guid: 0b255f83daffbf045b3ab655476e693f, type: 3}
-  annotation: {fileID: 0}
+  - {fileID: 114460027348977588, guid: 819f81005dbd56a4badcdb7d0781c495, type: 2}
   FitToScanOverlay: {fileID: 1765386979}
+  PlayPauseButton: {fileID: 293316351}
 --- !u!1 &863533047
 GameObject:
   m_ObjectHideFlags: 0
@@ -614,10 +606,10 @@ RectTransform:
   m_Father: {fileID: 1939971157}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.7818254}
-  m_AnchorMax: {x: 0.3633909, y: 1}
-  m_AnchoredPosition: {x: -0.20000076, y: -0.1000061}
-  m_SizeDelta: {x: -1.1540437, y: 0}
+  m_AnchorMin: {x: 0, y: 0.84847623}
+  m_AnchorMax: {x: 0.2516939, y: 1}
+  m_AnchoredPosition: {x: 1.3200073, y: 0.38000488}
+  m_SizeDelta: {x: 1.8899994, y: -0.95000076}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &863533049
 MonoBehaviour:
@@ -694,7 +686,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.9191176, g: 0.8035288, b: 0.5001081, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -739,6 +731,7 @@ GameObject:
   - component: {fileID: 1056266609}
   - component: {fileID: 1056266608}
   - component: {fileID: 1056266607}
+  - component: {fileID: 1056266606}
   m_Layer: 5
   m_Name: LoopButton
   m_TagString: Untagged
@@ -759,11 +752,24 @@ RectTransform:
   m_Father: {fileID: 1939971157}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.044000003, y: 0}
-  m_AnchorMax: {x: 0.3232212, y: 0.1881746}
-  m_AnchoredPosition: {x: -0.10000229, y: -0.1499939}
-  m_SizeDelta: {x: -0.3080845, y: -1.099987}
+  m_AnchorMin: {x: 0.115510195, y: 0}
+  m_AnchorMax: {x: 0.3232212, y: 0.1184762}
+  m_AnchoredPosition: {x: -0.125, y: 2.8049927}
+  m_SizeDelta: {x: -0.25, y: -0.45000076}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1056266606
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1056266604}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8bf2748755cef294196e0fc0c47427ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OffSprite: {fileID: 0}
+  OnSprite: {fileID: 0}
 --- !u!114 &1056266607
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -813,7 +819,7 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
-        m_CallState: 1
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1056266608
@@ -828,7 +834,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.9191176, g: 0.8035288, b: 0.5001081, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -1040,10 +1046,10 @@ RectTransform:
   m_Father: {fileID: 1939971157}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.6811522, y: 0}
-  m_AnchorMax: {x: 0.9593907, y: 0.1881746}
-  m_AnchoredPosition: {x: 0.20000076, y: -0.1867981}
-  m_SizeDelta: {x: -0.40000075, y: -0.37358856}
+  m_AnchorMin: {x: 0.68625426, y: 0.008825397}
+  m_AnchorMax: {x: 0.887796, y: 0.128}
+  m_AnchoredPosition: {x: -0.89001465, y: -0.17248535}
+  m_SizeDelta: {x: 0.22000027, y: -0.4050007}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2039419556
 MonoBehaviour:
@@ -1121,7 +1127,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.9191176, g: 0.8035288, b: 0.5001081, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:

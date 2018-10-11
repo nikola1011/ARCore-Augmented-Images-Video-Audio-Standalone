@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Video;
 using GoogleARCore;
+//using UnityEngine.UI;
 public  class Visualizer : MonoBehaviour {
 
 	/// <summary>
@@ -12,6 +13,7 @@ public  class Visualizer : MonoBehaviour {
 
 	//public GameObject VisualizedContent;
 
+    private CanvasRenderer AnnotationsCanvas;
 	private AudioSource Audio;
     private VideoPlayer Video;
 
@@ -19,8 +21,7 @@ public  class Visualizer : MonoBehaviour {
 	{
 		this.Audio = this.GetComponent<AudioSource>();
         this.Video = this.GetComponent<VideoPlayer>();
-        //TODO:annotations
-        //Debug.Log("Audio is set! " + this.Audio.name);
+        this.AnnotationsCanvas = this.GetComponent<CanvasRenderer>();
 
         Video.loopPointReached += VideoContentEnded;
     }
@@ -68,7 +69,10 @@ public  class Visualizer : MonoBehaviour {
         Debug.Log("Loop in Visualizer");
         if (Audio != null)
         {
-            Audio.loop = true;
+            if (Audio.loop == false)
+                Audio.loop = true;
+            else
+                Audio.loop = false;
         }
         else
         {
@@ -77,7 +81,10 @@ public  class Visualizer : MonoBehaviour {
 
         if (Video != null)
         {
-            Video.isLooping = true;
+            if (Video.isLooping == false)
+                Video.isLooping = true;
+            else
+                Video.isLooping = false;
         }
         else
         {
@@ -130,6 +137,25 @@ public  class Visualizer : MonoBehaviour {
         else
         {
             Debug.Log("Video component is not set or doesn't exist");
+        }
+
+        if (AnnotationsCanvas != null)
+        {
+            Canvas canvas = AnnotationsCanvas.GetComponentInChildren<Canvas>();
+            if (canvas == null)
+            {
+                Debug.Log("Canvas from AnnotationCanvas is not found (null)");
+                return;
+            }
+
+            if (canvas.enabled)
+                canvas.enabled = false;
+            else
+                canvas.enabled = true;
+        }
+        else
+        {
+            Debug.Log("AnnotationCanvas(Canvas) component is not set or doesn't exist");
         }
     }
 }
